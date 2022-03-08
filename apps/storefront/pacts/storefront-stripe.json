@@ -1,0 +1,41 @@
+{
+  "consumer": {
+    "name": "storefront"
+  },
+  "provider": {
+    "name": "Stripe"
+  },
+  "interactions": [
+    {
+      "description": "a request to create checkout",
+      "providerState": "idle",
+      "request": {
+        "method": "POST",
+        "path": "/v1/checkout/sessions",
+        "headers": {
+          "Accept": "application/json"
+        },
+        "body": "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&line_items[0][price]=price_1KYnp4JMuLcK5nTcH8UZ7UJ2&line_items[0][quantity]=2&mode=payment"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json"
+        },
+        "body": {
+          "url": "http://127.0.0.1/pay/"
+        },
+        "matchingRules": {
+          "$.body.url": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}
