@@ -10,6 +10,10 @@
     "dev": {
       "cache": false
     },
+    "@hello-pact-store/prisma#build": {
+      "dependsOn": ["$DATABASE_URL"],
+      "outputs": ["zod/**"]
+    },
     "@hello-pact-store/prisma#db-deploy": {
       "dependsOn": ["$DATABASE_URL"]
     },

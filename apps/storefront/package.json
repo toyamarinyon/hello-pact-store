@@ -7,7 +7,8 @@
     "build": "next build",
     "start": "next start",
     "lint": "next lint",
-    "test": "jest"
+    "test": "jest",
+    "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "dependencies": {
     "@pact-foundation/pact": "^9.17.2",
