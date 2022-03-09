@@ -3,14 +3,23 @@
   "version": "0.0.0",
   "private": true,
   "main": "index.ts",
+  "types": "index.d.ts",
+  "files": [
+    "zod"
+  ],
   "scripts": {
+    "build": "yarn generate-schemas",
     "dx": "yarn db-setup",
     "db-reset": "run-s db-nuke db-setup",
-    "db-setup": "run-s db-up db-migrate",
+    "db-deploy": "yarn prisma migrate deploy",
+    "db-studio": "yarn prisma studio",
+    "db-setup": "run-s db-up db-deploy db-seed",
     "db-up": "docker-compose up -d",
-    "db-seed": "development yarn prisma",
+    "db-seed": "yarn prisma db seed",
     "db-migrate": "yarn prisma migrate dev",
-    "db-nuke": "docker-compose down --volumes --remove-orphans"
+    "db-nuke": "docker-compose down --volumes --remove-orphans",
+    "generate-schemas": "prisma generate && prisma format",
+    "postinstall": "yarn generate-schemas"
   },
   "devDependencies": {
     "@types/node": "^17.0.21",
@@ -21,5 +30,8 @@
   },
   "dependencies": {
     "@prisma/client": "^3.10.0"
+  },
+  "prisma": {
+    "seed": "ts-node ./seed.ts"
   }
 }

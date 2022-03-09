@@ -5,6 +5,7 @@
   "main": "index.js",
   "scripts": {
     "dx": "yarn dev",
+    "build": "echo 'build'",
     "dev": "cd ../../ && vercel dev"
   },
   "devDependencies": {

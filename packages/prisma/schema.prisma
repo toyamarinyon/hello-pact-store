@@ -10,8 +10,21 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
+generator zod {
+  provider = "zod-prisma"
+  output   = "./zod"
+}
+
+enum Locale {
+  en
+  jp
+}
+
 model Product {
-  id      Int    @id @default(autoincrement())
-  title   String
-  titleJp String @map("title_jp")
+  id            Int    @id @default(autoincrement())
+  title         String
+  price         String
+  stripePriceId String
+  locale        Locale
+  imageUrl      String
 }
