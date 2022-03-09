@@ -10,6 +10,12 @@
     "dev": {
       "cache": false
     },
+    "@hello-pact-store/prisma#db-deploy": {
+      "dependsOn": ["$DATABASE_URL"]
+    },
+    "@hello-pact-store/api#build": {
+      "dependsOn": ["@hello-pact-store/prisma#db-deploy"]
+    },
     "@hello-pact-store/api#dx": {
       "dependsOn": ["@hello-pact-store/prisma#dx"]
     },
@@ -17,7 +23,6 @@
       "dependsOn": ["@hello-pact-store/prisma#dx"]
     },
     "dx": {
-      
       "cache": false
     },
     "clean": {
