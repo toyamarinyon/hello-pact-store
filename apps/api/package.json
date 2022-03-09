@@ -1,0 +1,17 @@
+{
+  "name": "@hello-pact-store/api",
+  "version": "0.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "dx": "yarn dev",
+    "dev": "cd ../../ && vercel dev"
+  },
+  "devDependencies": {
+    "@vercel/node": "^1.13.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@hello-pact-store/prisma": "*"
+  }
+}

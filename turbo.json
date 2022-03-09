@@ -9,6 +9,19 @@
     },
     "dev": {
       "cache": false
+    },
+    "@hello-pact-store/api#dx": {
+      "dependsOn": ["@hello-pact-store/prisma#dx"]
+    },
+    "@hello-pact-store/storefront#dx": {
+      "dependsOn": ["@hello-pact-store/prisma#dx"]
+    },
+    "dx": {
+      
+      "cache": false
+    },
+    "clean": {
+      "cache": false
     }
   }
 }

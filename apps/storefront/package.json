@@ -1,7 +1,8 @@
 {
-  "name": "storefront",
+  "name": "@hello-pact-store/storefront",
   "version": "0.0.0",
   "scripts": {
+    "dx": "yarn dev",
     "dev": "next dev -p 3023",
     "build": "next build",
     "start": "next start",

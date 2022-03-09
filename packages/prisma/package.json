@@ -1,0 +1,25 @@
+{
+  "name": "@hello-pact-store/prisma",
+  "version": "0.0.0",
+  "private": true,
+  "main": "index.ts",
+  "scripts": {
+    "dx": "yarn db-setup",
+    "db-reset": "run-s db-nuke db-setup",
+    "db-setup": "run-s db-up db-migrate",
+    "db-up": "docker-compose up -d",
+    "db-seed": "development yarn prisma",
+    "db-migrate": "yarn prisma migrate dev",
+    "db-nuke": "docker-compose down --volumes --remove-orphans"
+  },
+  "devDependencies": {
+    "@types/node": "^17.0.21",
+    "npm-run-all": "^4.1.5",
+    "prisma": "^3.10.0",
+    "ts-node": "^10.7.0",
+    "typescript": "^4.6.2"
+  },
+  "dependencies": {
+    "@prisma/client": "^3.10.0"
+  }
+}
