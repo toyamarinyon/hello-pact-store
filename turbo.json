@@ -32,5 +32,6 @@
     "clean": {
       "cache": false
     }
-  }
+  },
+  "globalDependencies": ["apps/storefront/.env", "packages/prisma/.env"]
 }
