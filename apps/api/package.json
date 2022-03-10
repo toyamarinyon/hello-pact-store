@@ -4,9 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "dx": "yarn dev",
+    "dx": "cd ../.. && vercel dev",
     "build": "echo 'build'",
-    "dev": "cd ../../ && vercel dev",
     "clean": "rm -rf .turbo && rm -rf node_modules"
   },
   "devDependencies": {

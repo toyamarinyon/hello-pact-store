@@ -2,25 +2,25 @@
 # starts a postgres instance on port 5450 to use as a local db
 version: "3.6"
 services:
-  postgres:
-    image: postgres:13
+  mysql:
+    platform: linux/x86_64
+    image: mysql
     ports:
-      - "5451:5432" # expose pg on port 5450 to not collide with pg from elswhere
-    restart: always
-    volumes:
-      - db_data:/var/lib/postgresql/data
+      - "3307:3306"
     environment:
-      POSTGRES_PASSWORD: ""
-      POSTGRES_HOST_AUTH_METHOD: trust
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_USER: "user"
+      MYSQL_PASSWORD: "password"
+      MYSQL_DATABASE: "sat0shi-store-dev"
     healthcheck:
-      test: ["CMD-SHELL", "pg_isready"]
-      interval: 10s
+      test: "/usr/bin/mysql --user=user --password=password --execute \"SHOW DATABASES;\""
+      interval: 5s
       timeout: 5s
       retries: 5
-  postgres_is_ready:
-    image: postgres
+
+  mysql_is_ready:
+    platform: linux/x86_64
+    image: mysql
     depends_on:
-      postgres:
+      mysql:
         condition: service_healthy
-volumes:
-  db_data:
