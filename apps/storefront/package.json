@@ -13,6 +13,7 @@
   "dependencies": {
     "@pact-foundation/pact": "^9.17.2",
     "@stripe/stripe-js": "^1.24.0",
+    "@sat0shi-store/tsconfig": "*",
     "envsafe": "^2.0.3",
     "https-proxy-agent": "^5.0.0",
     "next": "12.1.0",
