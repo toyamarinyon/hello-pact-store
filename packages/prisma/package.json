@@ -1,5 +1,5 @@
 {
-  "name": "@hello-pact-store/prisma",
+  "name": "@sat0shi-store/prisma",
   "version": "0.0.0",
   "private": true,
   "main": "index.ts",

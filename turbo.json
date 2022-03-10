@@ -10,21 +10,21 @@
     "dev": {
       "cache": false
     },
-    "@hello-pact-store/prisma#build": {
+    "@sat0shi-store/prisma#build": {
       "dependsOn": ["$DATABASE_URL"],
       "outputs": ["zod/**"]
     },
-    "@hello-pact-store/prisma#deploy": {
+    "@sat0shi-store/prisma#deploy": {
       "dependsOn": ["$DATABASE_URL"]
     },
-    "@hello-pact-store/api#build": {
-      "dependsOn": ["@hello-pact-store/prisma#deploy"]
+    "@sat0shi-store/api#build": {
+      "dependsOn": ["@sat0shi-store/prisma#deploy"]
     },
-    "@hello-pact-store/api#dx": {
-      "dependsOn": ["@hello-pact-store/prisma#dx"]
+    "@sat0shi-store/api#dx": {
+      "dependsOn": ["@sat0shi-store/prisma#dx"]
     },
-    "@hello-pact-store/storefront#dx": {
-      "dependsOn": ["@hello-pact-store/prisma#dx"]
+    "@sat0shi-store/storefront#dx": {
+      "dependsOn": ["@sat0shi-store/prisma#dx"]
     },
     "dx": {
       "cache": false

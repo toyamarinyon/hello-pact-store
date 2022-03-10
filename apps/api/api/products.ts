@@ -1,6 +1,6 @@
 import type { VercelRequest, VercelResponse } from "@vercel/node";
-import { prisma } from "@hello-pact-store/prisma";
-import { ProductModel } from "@hello-pact-store/prisma/zod";
+import { prisma } from "@sat0shi-store/prisma";
+import { ProductModel } from "@sat0shi-store/prisma/zod";
 
 export default async (request: VercelRequest, response: VercelResponse) => {
   const localeScheme = ProductModel.shape.locale;

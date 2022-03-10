@@ -1,5 +1,5 @@
 import { browserEnv } from "../env/browser";
-import { ProductModel } from "@hello-pact-store/prisma/zod";
+import { ProductModel } from "@sat0shi-store/prisma/zod";
 import { z } from "zod";
 
 const { NEXT_PUBLIC_API_HOST, NEXT_PUBLIC_API_PORT, NEXT_PUBLIC_API_PROTOCOL } =

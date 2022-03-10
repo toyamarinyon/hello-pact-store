@@ -1,5 +1,5 @@
 {
-  "name": "@hello-pact-store/api",
+  "name": "@sat0shi-store/api",
   "version": "0.0.0",
   "description": "",
   "main": "index.js",
@@ -14,6 +14,6 @@
     "typescript": "^4.6.2"
   },
   "dependencies": {
-    "@hello-pact-store/prisma": "*"
+    "@sat0shi-store/prisma": "*"
   }
 }
