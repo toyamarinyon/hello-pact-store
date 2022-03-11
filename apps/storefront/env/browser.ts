@@ -10,10 +10,12 @@ export const browserEnv = envsafe({
   }),
   NEXT_PUBLIC_API_PORT: str({
     input: process.env.NEXT_PUBLIC_API_PORT,
+    default: "443",
     devDefault: "3000",
   }),
   NEXT_PUBLIC_API_PROTOCOL: str({
     input: process.env.NEXT_PUBLIC_API_PROTOCOL,
+    default: "https",
     devDefault: "http",
     choices: ["http", "https"],
   }),

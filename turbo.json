@@ -4,6 +4,15 @@
       "dependsOn": ["^build"],
       "outputs": ["dist/**", ".next/**"]
     },
+    "@sat0shi-store/storefront#build": {
+      "dependsOn": [
+        "^build",
+        "$NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY",
+        "$NEXT_PUBLIC_API_HOST",
+        "$NEXT_PUBLIC_API_PORT",
+        "$NEXT_PUBLIC_API_PROTOCOL"
+      ]
+    },
     "lint": {
       "outputs": []
     },
