@@ -27,7 +27,7 @@
       "dependsOn": ["$DATABASE_URL"]
     },
     "@sat0shi-store/api#build": {
-      "dependsOn": ["@sat0shi-store/prisma#deploy"]
+      "dependsOn": ["@sat0shi-store/prisma#deploy", "$STRIPE_SECRET_KEY"]
     },
     "@sat0shi-store/api#dx": {
       "dependsOn": ["@sat0shi-store/prisma#dx"]
@@ -42,5 +42,9 @@
       "cache": false
     }
   },
-  "globalDependencies": ["apps/storefront/.env", "packages/prisma/.env"]
+  "globalDependencies": [
+    "apps/storefront/.env",
+    "apps/api/.env",
+    "packages/prisma/.env"
+  ]
 }

@@ -9,16 +9,18 @@ export const productsScheme = z.object({
   products: ProductModel.array(),
 });
 
+export const createCheckoutSessionsScheme = z.object({
+  url: z.string(),
+});
 const baseUrl = new URL(
   "/",
   `${NEXT_PUBLIC_API_PROTOCOL}://${NEXT_PUBLIC_API_HOST}:${NEXT_PUBLIC_API_PORT}`
 );
-
 interface FetcherParam {
   url: string;
-  query: Record<string, string>;
+  query?: Record<string, string>;
 }
-export function fetcher<T extends z.SomeZodObject>(scheme: T) {
+export function apiFetcher<T extends z.SomeZodObject>(scheme: T) {
   return async function ({ url, query }: FetcherParam): Promise<z.infer<T>> {
     const requestUrl = new URL(url, baseUrl);
     requestUrl.search = new URLSearchParams(query).toString();
@@ -28,16 +30,17 @@ export function fetcher<T extends z.SomeZodObject>(scheme: T) {
   };
 }
 
-export const productsFetcher = async ({
-  url,
-  query,
-}: {
-  url: string;
-  query: Record<string, string>;
-}) => {
-  const requestUrl = new URL(url, baseUrl);
-  requestUrl.search = new URLSearchParams(query).toString();
-  return fetch(requestUrl.toString())
+export async function createCheckoutSession(productId: number) {
+  const requestUrl = new URL("/api/checkout_sessions", baseUrl);
+  return fetch(requestUrl.toString(), {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json",
+    },
+    body: JSON.stringify({
+      productId,
+    }),
+  })
     .then((res) => res.json())
-    .then((json) => productsScheme.parse(json));
-};
+    .then((json) => createCheckoutSessionsScheme.parse(json));
+}

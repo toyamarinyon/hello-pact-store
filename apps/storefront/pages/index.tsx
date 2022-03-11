@@ -7,7 +7,12 @@ import useSWR from "swr";
 import jp from "../locales/jp";
 import en from "../locales/en";
 import { browserEnv } from "../env/browser";
-import { fetcher, productsScheme } from "../lib/fetcher";
+import {
+  apiFetcher,
+  createCheckoutSession,
+  createCheckoutSessionsScheme,
+  productsScheme,
+} from "../lib/fetcher";
 
 loadStripe(browserEnv.NEXT_PUBLIC_STRIPE_PUBLISHABLE_KEY);
 
@@ -17,7 +22,7 @@ const Home: NextPage = () => {
   const t = locale === "jp" ? jp : en;
   const { data, error } = useSWR(
     { url: "/api/products", query: { locale } },
-    fetcher(productsScheme)
+    apiFetcher(productsScheme)
   );
   if (error) return <div>{error}</div>;
   if (!data) return <div>loading...</div>;
@@ -66,15 +71,8 @@ const Home: NextPage = () => {
                   className="w-full"
                   onSubmit={async (e) => {
                     e.preventDefault();
-                    await fetch("/api/checkout_sessions", {
-                      headers: {
-                        "Content-type": "application/json",
-                      },
-                      method: "POST",
-                      body: JSON.stringify({
-                        price: product.stripePriceId,
-                      }),
-                    });
+                    const { url } = await createCheckoutSession(product.id);
+                    router.push(url);
                   }}
                 >
                   <button className="bg-indigo-500 text-white py-2 rounded w-full">

@@ -1,4 +1,5 @@
 import { NextApiRequest, NextApiResponse } from "next";
+import { prisma } from "@sat0shi-store/prisma";
 import { stripe } from "../../lib/stripe";
 
 interface StripeError {
@@ -20,13 +21,23 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
-  if (req.method === "POST") {
+  res
+    .setHeader("Access-Control-Allow-Credentials", "true")
+    .setHeader("Access-Control-Allow-Origin", "*")
+    .setHeader("Access-Control-Allow-Methods", "POST, GET, OPTIONS")
+    .setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method == "OPTIONS") {
+    res.status(200).json({});
+  } else if (req.method === "POST") {
     try {
       // Create Checkout Sessions from body params.
+      const product = await prisma.product.findUnique({
+        where: { id: req.body.productId },
+      });
       const session = await stripe.checkout.sessions.create({
         line_items: [
           {
-            price: req.body.price,
+            price: product?.stripePriceId,
             quantity: 1,
           },
         ],
