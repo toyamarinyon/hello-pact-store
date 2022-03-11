@@ -1,3 +1,8 @@
 {
-  "extends": "@sat0shi-store/tsconfig/nextjs.json"
+  "extends": "@sat0shi-store/tsconfig/nextjs.json",
+  "include": [
+    "next-env.d.ts",
+    "**/*.ts",
+    "**/*.tsx"
+  ]
 }
