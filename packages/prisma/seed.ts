@@ -10,7 +10,7 @@ async function main() {
         {
           title: "Handmade Hair Tie",
           price: "$3.00",
-          stripePriceId: "prod_LFIPVE1c798tw2",
+          stripePriceId: "price_1KbQQXJMuLcK5nTcV2H8BT97",
           locale: "en",
           imageUrl: "hair01.jpeg",
         },
