@@ -1,44 +1,74 @@
 import { Pact } from "@pact-foundation/pact";
 import { like } from "@pact-foundation/pact/src/dsl/matchers";
-import { serverEnv } from "../env/server";
-import { stripe } from "../lib/stripe";
+import fetch from "node-fetch";
+import { browserEnv } from "../env/browser";
+import { baseUrl } from "../lib/fetcher";
 
+console.log({ browserEnv });
 const provider = new Pact({
   consumer: "storefront",
-  provider: "Stripe",
-  port: serverEnv.STRIPE_PORT,
-  host: serverEnv.STRIPE_HOST,
+  provider: "api",
+  host: browserEnv.NEXT_PUBLIC_API_HOST,
+  port: browserEnv.NEXT_PUBLIC_API_PORT,
 });
 
-describe("Stripe", () => {
-  describe("when checkout a product", () => {
+describe("api", () => {
+  beforeAll(async () => {
+    await provider.setup();
+  });
+  describe("products exist", () => {
     beforeAll(async () => {
-      await provider.setup();
       await provider.addInteraction({
-        state: "no token",
-        uponReceiving: "a request to create checkout",
+        state: "products exist",
+        uponReceiving: "a request to all products",
         withRequest: {
-          method: "POST",
-          path: "/v1/checkout/sessions",
-          headers: { Accept: "application/json" },
-          body: "success_url=https%3A%2F%2Fexample.com%2Fsuccess&cancel_url=https%3A%2F%2Fexample.com%2Fcancel&line_items[0][price]=price_1KYnp4JMuLcK5nTcH8UZ7UJ2&line_items[0][quantity]=2&mode=payment",
+          method: "GET",
+          path: "/api/products",
+          query: {
+            locale: "en",
+          },
         },
         willRespondWith: {
           status: 200,
           headers: { "Content-Type": "application/json" },
           body: {
-            url: like("https://checkout.stripe.com/pay/"),
+            products: [],
           },
         },
       });
     });
-    it("generates a checkout url", async () => {
-      const result = await stripe.checkout.sessions.create({
-        success_url: "https://example.com/success",
-        cancel_url: "https://example.com/cancel",
-        line_items: [{ price: "price_1KYnp4JMuLcK5nTcH8UZ7UJ2", quantity: 2 }],
-        mode: "payment",
+    it("retrieve all products", async () => {
+      const url = new URL("/api/products", baseUrl);
+      url.search = new URLSearchParams({ locale: "en" }).toString();
+      const result = await fetch(url.toString());
+    });
+    afterEach(async () => await provider.verify());
+  });
+  describe("jp", () => {
+    beforeAll(async () => {
+      await provider.addInteraction({
+        state: "products exist",
+        uponReceiving: "a request to all jp products",
+        withRequest: {
+          method: "GET",
+          path: "/api/products",
+          query: {
+            locale: "jp",
+          },
+        },
+        willRespondWith: {
+          status: 200,
+          headers: { "Content-Type": "application/json" },
+          body: {
+            products: [],
+          },
+        },
       });
+    });
+    it("retrieve all products", async () => {
+      const url = new URL("/api/products", baseUrl);
+      url.search = new URLSearchParams({ locale: "jp" }).toString();
+      const result = await fetch(url.toString());
     });
     afterEach(async () => await provider.verify());
   });
