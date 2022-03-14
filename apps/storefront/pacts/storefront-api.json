@@ -1,0 +1,161 @@
+{
+  "consumer": {
+    "name": "storefront"
+  },
+  "provider": {
+    "name": "api"
+  },
+  "interactions": [
+    {
+      "description": "a request to en products",
+      "providerState": "products exist",
+      "request": {
+        "method": "GET",
+        "path": "/api/products",
+        "query": "locale=en"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "products": [
+            {
+              "id": 1,
+              "title": "Pact Handmade Hair Tie",
+              "price": "$3.00",
+              "stripePriceId": "price_1KbQQXJMuLcK5nTcV2H8BT97",
+              "locale": "en",
+              "imageUrl": "hair01.jpeg"
+            },
+            {
+              "id": 2,
+              "title": "Pact Handmade Pin",
+              "price": "$3.00",
+              "stripePriceId": "price_1KbQQXJMuLcK5nTcV2H8BT97",
+              "locale": "en",
+              "imageUrl": "hair02.jpeg"
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body.products[0].id": {
+            "match": "type"
+          },
+          "$.body.products[0].title": {
+            "match": "type"
+          },
+          "$.body.products[0].price": {
+            "match": "type"
+          },
+          "$.body.products[0].stripePriceId": {
+            "match": "type"
+          },
+          "$.body.products[0].locale": {
+            "match": "type"
+          },
+          "$.body.products[0].imageUrl": {
+            "match": "type"
+          },
+          "$.body.products[1].id": {
+            "match": "type"
+          },
+          "$.body.products[1].title": {
+            "match": "type"
+          },
+          "$.body.products[1].price": {
+            "match": "type"
+          },
+          "$.body.products[1].stripePriceId": {
+            "match": "type"
+          },
+          "$.body.products[1].locale": {
+            "match": "type"
+          },
+          "$.body.products[1].imageUrl": {
+            "match": "type"
+          }
+        }
+      }
+    },
+    {
+      "description": "a request to jp products",
+      "providerState": "products exist",
+      "request": {
+        "method": "GET",
+        "path": "/api/products",
+        "query": "locale=jp"
+      },
+      "response": {
+        "status": 200,
+        "headers": {
+          "Content-Type": "application/json; charset=utf-8"
+        },
+        "body": {
+          "products": [
+            {
+              "id": 3,
+              "title": "Pact 〈入園式にもピッタリ♪〉 春に映えるヘアゴム 苺色",
+              "price": "￥300",
+              "stripePriceId": "price_1KbPQcJMuLcK5nTchC1dzJpa",
+              "locale": "jp",
+              "imageUrl": "hair01.jpeg"
+            },
+            {
+              "id": 4,
+              "title": "Pact おめめパッチリ☆メガネバッチ",
+              "price": "￥300",
+              "stripePriceId": "price_1KbQRLJMuLcK5nTcmE15TFWl",
+              "locale": "jp",
+              "imageUrl": "hair02.jpeg"
+            }
+          ]
+        },
+        "matchingRules": {
+          "$.body.products[0].id": {
+            "match": "type"
+          },
+          "$.body.products[0].title": {
+            "match": "type"
+          },
+          "$.body.products[0].price": {
+            "match": "type"
+          },
+          "$.body.products[0].stripePriceId": {
+            "match": "type"
+          },
+          "$.body.products[0].locale": {
+            "match": "type"
+          },
+          "$.body.products[0].imageUrl": {
+            "match": "type"
+          },
+          "$.body.products[1].id": {
+            "match": "type"
+          },
+          "$.body.products[1].title": {
+            "match": "type"
+          },
+          "$.body.products[1].price": {
+            "match": "type"
+          },
+          "$.body.products[1].stripePriceId": {
+            "match": "type"
+          },
+          "$.body.products[1].locale": {
+            "match": "type"
+          },
+          "$.body.products[1].imageUrl": {
+            "match": "type"
+          }
+        }
+      }
+    }
+  ],
+  "metadata": {
+    "pactSpecification": {
+      "version": "2.0.0"
+    }
+  }
+}

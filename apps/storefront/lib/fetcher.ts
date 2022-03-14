@@ -12,7 +12,7 @@ export const productsScheme = z.object({
 export const createCheckoutSessionsScheme = z.object({
   url: z.string(),
 });
-const baseUrl = new URL(
+export const baseUrl = new URL(
   "/",
   `${NEXT_PUBLIC_API_PROTOCOL}://${NEXT_PUBLIC_API_HOST}:${NEXT_PUBLIC_API_PORT}`
 );

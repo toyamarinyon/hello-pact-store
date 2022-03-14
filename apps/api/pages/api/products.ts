@@ -8,6 +8,10 @@ export default async (request: VercelRequest, response: VercelResponse) => {
   const products = await prisma.product.findMany({
     where: { locale: locale.success ? locale.data : "en" },
   });
+
+  // Simulate flaky test
+  // await new Promise((resolve) => setTimeout(() => resolve(true), 10000));
+
   response
     .status(200)
     .setHeader("Access-Control-Allow-Credentials", "true")

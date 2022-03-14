@@ -12,7 +12,9 @@
     "dx": "turbo run dx --parallel",
     "lint": "turbo run lint",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "clean": "turbo run clean && rm -rf node_modules"
+    "clean": "turbo run clean && rm -rf node_modules",
+    "cypress:open": "yarn workspace @sat0shi-store/storefront cypress open",
+    "pact-provider": "turbo run pact:provider"
   },
   "devDependencies": {
     "prettier": "^2.5.1",

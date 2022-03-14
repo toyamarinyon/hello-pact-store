@@ -5,7 +5,8 @@
   "main": "index.ts",
   "types": "index.d.ts",
   "files": [
-    "zod"
+    "zod",
+    "seed.ts"
   ],
   "scripts": {
     "build": "yarn generate-schemas",

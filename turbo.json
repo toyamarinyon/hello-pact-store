@@ -46,6 +46,9 @@
     },
     "clean": {
       "cache": false
+    },
+    "pact:provider": {
+      "cache": false
     }
   },
   "globalDependencies": [

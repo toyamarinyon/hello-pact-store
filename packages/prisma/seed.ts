@@ -2,7 +2,7 @@ import { PrismaClient } from "@prisma/client";
 
 const prisma = new PrismaClient();
 
-async function main() {
+export async function main() {
   const productsCount = await prisma.product.count();
   if (productsCount === 0) {
     await prisma.product.createMany({
