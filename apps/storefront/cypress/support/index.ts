@@ -15,7 +15,6 @@ declare global {
         port: number;
       }): Chainable<Element>;
       addInteractionToProvider(option: {
-        as: string;
         state: string;
         uponReceiving: string;
         withRequest: PactRequestOptions;
