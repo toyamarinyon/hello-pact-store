@@ -45,7 +45,7 @@ yarn dx
 # In first terminal
 yarn dx
 # In second terminal
-yarn workspace @sat0shi-store/storefront cypress-open
+yarn workspace @sat0shi-store/storefront cypress open
 ```
 
 ### Provider Testing
